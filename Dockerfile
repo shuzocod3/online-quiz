@@ -22,4 +22,4 @@ COPY . /app/
 EXPOSE 8080
 
 # Command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8080","online-quiz.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080","online_quiz.wsgi:application"]

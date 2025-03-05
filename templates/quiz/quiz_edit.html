@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="custom-label-class" style="font-size: 22px; font-weight: 500;">{{ form.title.label }}:ㅤ</label>
+        {{ form.title }}
+        </div>
+        <div class="input-group mb-3">
+        <label for="{{ form.title.id_for_label }}" class="custom-label-class" style="font-size: 22px; font-weight: 500;">{{ form.description.label }}:ㅤ</label>
+        {{ form.description }}
+        </div>
+        <div class="input-group mb-3">
+        <label for="{{ form.title.id_for_label }}" class="custom-label-class" style="font-size: 22px; font-weight: 500;">{{ form.media.label }}:ㅤ</label>
+        {{ form.media }}
+        </div>
+        <div class="input-group mb-3">
+        <button type="submit" class="btn btn-secondary" style="font-size: 18px; font-weight: 500;">Редагувати</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2> {{ profile.username }} </h2>
+{{ profile.email }}
+{{ profile.first_name }}
+{{ profile.last_name }}
+
+<br>
+<a href="{% url 'profile-edit' user.pk %}"> <button type="submit" class="btn btn-secondary" style="font-size: 18px; font-weight: 500;">Редагувати профіль</button></a>
+<br>
+<h1></h1>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger" style="font-size: 18px; font-weight: 500;">Вийти з акаунту</button>
+</form>
+
+{% endblock %}

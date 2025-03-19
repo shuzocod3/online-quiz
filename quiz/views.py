@@ -38,12 +38,14 @@ class QuizCreateView(LoginRequiredMixin, CreateView):
 
 
 class QuizDeleteView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
+    login_url = "/register/"
     model = models.Quiz
     template_name = "quiz/quiz_delete.html"
     success_url = reverse_lazy('quiz-list')
 
 
 class QuizEditView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
+    login_url = "/register/"
     model = models.Quiz
     template_name = "quiz/quiz_edit.html"
     form_class = QuizFormEdit

@@ -12,3 +12,5 @@ class CustomUser(AbstractUser):
         ('admin', 'Адміністратор'),
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
+    bio = models.TextField(null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars', blank=True, null=True)

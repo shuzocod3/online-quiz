@@ -10,11 +10,17 @@ class Quiz(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Questions(models.Model):
     media = models.ImageField(upload_to="question_media", blank=True, null=True)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="questions")
     content = models.TextField()
+
+    def __str__(self):
+        return self.content
 
 
 class Answer(models.Model):

@@ -21,3 +21,8 @@ class AnswerForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields['question'].initial = question
         self.fields['answer'].queryset = question.answers.all()
+
+class QuestionFormCreate(forms.ModelForm):
+    class Meta:
+        model = Questions
+        fields = ['media', 'quiz', 'content']

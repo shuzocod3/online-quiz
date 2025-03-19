@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from quiz import models
 from django.urls import reverse_lazy
-from .forms import QuizFormCreate, AnswerForm, QuizFormEdit
+from .forms import QuizFormCreate, AnswerForm, QuizFormEdit, QuestionFormCreate
 from django.views.generic import ListView, DetailView, CreateView, FormView, DeleteView, UpdateView
 from .mixins import UserIsOwnerMixin
 import random
@@ -25,7 +25,8 @@ class QuizDetailView(DetailView):
     template_name = "quiz/quiz_detail.html"
 
 
-class QuizCreateView(CreateView):
+class QuizCreateView(LoginRequiredMixin, CreateView):
+    login_url = "/register/"
     model = models.Quiz
     template_name = "quiz/quiz_create.html"
     form_class = QuizFormCreate
@@ -49,7 +50,8 @@ class QuizEditView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
     success_url = reverse_lazy('quiz-list')
 
 
-class QuestionDetailView(FormView):
+class QuestionDetailView(LoginRequiredMixin, FormView):
+    login_url = "/register/"
     model = models.Questions
     template_name = "quiz/question_detail.html"
     form_class = AnswerForm
@@ -90,3 +92,10 @@ class UserAnswerListView(ListView):
     def get_queryset(self):
         gamecode = self.kwargs.get("gamecode")
         return UserAnswer.objects.filter(gamecode=gamecode)
+
+
+class QuestionCreateView(CreateView):
+    model = models.Questions
+    template_name = "quiz/question_create.html"
+    form_class = QuestionFormCreate
+    success_url = reverse_lazy("quiz-list")

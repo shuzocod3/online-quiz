@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
         <label for="{{ form.title.id_for_label }}" class="custom-label-class" style="font-size: 22px; font-weight: 500;">{{ form.title.label }}:ㅤ</label>

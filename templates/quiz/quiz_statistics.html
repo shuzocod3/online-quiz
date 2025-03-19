@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h2>{{ useranswer.id_user }}</h2>
+<ol>
 {% for useranswer in useranswers %}
-<p>{{ useranswer.id_answer }}</p>
-<p>{{ useranswer.id_answer.is_correct }}</p>
-<p>{{ useranswer.id_user }}</p>
-<p>{{ useranswer.id_quiz }}</p>
-<p>{{ useranswer.gamecode }}</p>
+<h3><li>{{ useranswer.id_answer }} - {{ useranswer.id_answer.is_correct }}</h3>
 {% endfor %}
+</ol>
 
 {% endblock %}

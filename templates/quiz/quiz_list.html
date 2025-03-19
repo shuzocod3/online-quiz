@@ -3,13 +3,12 @@
 
 
 
-
     {% for base in quiz %}
 {% if base.questions.exists %}
     <h2> <a href="{% url 'quiz-question' base.questions.first.id %}" style="text-decoration: none"> {{ base.title }} </a> </h2>
 {% endif %}
 {% if base.media %}
-    <img src="{{base.media.url}}" width="200"/>
+    <img src="{{base.media.url}}" width="250"/>
 {% endif %}
     <h4> {{ base.description }} </h4>
     <h5> {{ base.creator }} </h5>

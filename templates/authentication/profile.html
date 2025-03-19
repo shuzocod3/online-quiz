@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
+<img src="{{profile.media.url}}" width="200"/>
+<h2>{{ profile.username }}</h2>
+<h4>{{ profile.email }}</h4>
+<h4>{{ profile.bio }}</h4>
 
-<h2> {{ profile.username }} </h2>
-{{ profile.email }}
-{{ profile.first_name }}
-{{ profile.last_name }}
-
-<br>
 <a href="{% url 'profile-edit' user.pk %}"> <button type="submit" class="btn btn-secondary" style="font-size: 18px; font-weight: 500;">Редагувати профіль</button></a>
 <br>
 <h1></h1>

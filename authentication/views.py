@@ -15,7 +15,9 @@ class RegisterView(CreateView):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'authentication/edit_profile.html'
     form_class = UserProfileForm
-    success_url = reverse_lazy('profile')
+
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs = {"pk":self.request.user.pk})
 
     def get_object(self):
         return self.request.user

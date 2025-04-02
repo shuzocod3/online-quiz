@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ти впевнений що хочеш видалати запитання "{{ questions.content }}"?</h1>
+    <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" style="font-size: 18px; font-weight: 500;">Так, видалити</button>
+         </form>
+        <h1></h1>
+    <a href="{% url 'quiz-list' %}"> <button type="button" class="btn btn-secondary" style="font-size: 18px; font-weight: 500;">Вернутися на головну сторінку</button></a>
+
+{% endblock %}

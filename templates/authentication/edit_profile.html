@@ -4,7 +4,7 @@
 <div class="container">
     <h2 class="text-center my-4">Редагування профілю</h2>
 
-    <form method="post" class="p-4 border rounded bg-light shadow-sm">
+    <form method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-sm">
         {% csrf_token %}
         <!-- Виведення помилок -->
         {% if form.errors %}

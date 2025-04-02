@@ -10,4 +10,9 @@ urlpatterns = [
     path("edit/<int:pk>", views.QuizEditView.as_view(), name = "quiz-edit"),
     path("statisticts/<str:gamecode>", views.UserAnswerListView.as_view(), name = "quiz-statistics"),
     path("create_question/", views.QuestionCreateView.as_view(), name = "question-create"),
+    path("create_answer/", views.AnswerCreateView.as_view(), name = "answer-create"),
+    path("edit_question/<int:pk>", views.QuestionEditView.as_view(), name = "question-edit"),
+    path("delete_question/<int:pk>", views.QuestionDeleteView.as_view(), name = "question-delete"),
+    path("list_quiz_question/<int:pk>", views.QuestionListView.as_view(), name = "question-list"),
+    path("edit_answer/<int:pk>", views.AnswerEditView.as_view(), name = "answer-edit"),
 ]

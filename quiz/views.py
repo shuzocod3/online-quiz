@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from quiz import models
 from django.urls import reverse_lazy
-from .forms import QuizFormCreate, AnswerForm, QuizFormEdit, QuestionFormCreate
+from .forms import QuizFormCreate, AnswerForm, QuizFormEdit, QuestionFormCreate, AnswerFormCreate, QuestionFormEdit, AnswerFormEdit
 from django.views.generic import ListView, DetailView, CreateView, FormView, DeleteView, UpdateView
 from .mixins import UserIsOwnerMixin
 import random
@@ -86,6 +86,7 @@ class QuestionDetailView(LoginRequiredMixin, FormView):
         context["question"] = get_object_or_404(Questions, pk = self.kwargs["question_id"])
         return context
 
+
 class UserAnswerListView(ListView):
     model = models.UserAnswer
     context_object_name = "useranswers"
@@ -100,4 +101,41 @@ class QuestionCreateView(CreateView):
     model = models.Questions
     template_name = "quiz/question_create.html"
     form_class = QuestionFormCreate
+    success_url = reverse_lazy("quiz-list")
+
+
+class AnswerCreateView(CreateView):
+    model = models.Answer
+    template_name = "quiz/answer_create.html"
+    form_class = AnswerFormCreate
+    success_url = reverse_lazy("quiz-list")
+
+
+class QuestionEditView(UpdateView):
+    model = models.Questions
+    template_name = "quiz/question_edit.html"
+    form_class = QuestionFormEdit
+    success_url = reverse_lazy("quiz-list")
+
+
+class QuestionDeleteView(DeleteView):
+    model = models.Questions
+    template_name = "quiz/question_delete.html"
+    success_url = reverse_lazy('quiz-list')
+
+
+class QuestionListView(ListView):
+    model = models.Questions
+    context_object_name = "question"
+    template_name = "quiz/question_list.html"
+
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+        return Questions.objects.filter(quiz_id=pk)
+
+
+class AnswerEditView(UpdateView):
+    model = models.Answer
+    template_name = "quiz/answer_edit.html"
+    form_class = AnswerFormEdit
     success_url = reverse_lazy("quiz-list")

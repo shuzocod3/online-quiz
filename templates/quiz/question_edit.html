@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="custom-label-class" style="font-size: 22px; font-weight: 500;">{{ form.media.label }}:ㅤ</label>
+        {{ form.media }}
+        </div>
+        {% if object.media %}
+            <img src="{{object.media.url}}" width="250"/>
+        {% endif %}
+        <br>
+        <br>
+        <div class="input-group mb-3">
+        <label for="{{ form.title.id_for_label }}" class="custom-label-class" style="font-size: 22px; font-weight: 500;">{{ form.content.label }}:ㅤ</label>
+        {{ form.content }}
+        </div>
+        <div class="input-group mb-3">
+        <button type="submit" class="btn btn-secondary" style="font-size: 18px; font-weight: 500;">Редагувати</button>
+        </div>
+    </form>
+
+{% for base in object.answers.all %}
+    <h4>{{base.content}}</h4>
+<h1></h1>
+    <a href="{% url 'answer-edit' base.pk %} " style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Редагувати відповідь</a>
+<h1></h1>
+    <a href="{% url 'question-delete' base.pk %} " style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Видалити відповідь</a>
+<br>
+<br>
+
+{% endfor %}
+
+{% endblock %}
